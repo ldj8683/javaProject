@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="video">
+	<select id="all" resultType="sportVideo2VO">
+		select vnum, title, TO_CHAR(vdate1, 'YYYY/MM/DD') AS vdate1, clicks, image from video		
+	</select>
+	
+	<select id="search" parameterType="sportVideo2VO" resultType="sportVideo2VO">
+		select vnum, title, TO_CHAR(vdate1, 'YYYY/MM/DD') AS vdate1, clicks, image from video where title like '%' ||  #{word} || '%' or channel like '%' ||  #{word} || '%' ORDER BY CLICKS/(SYSDATE - TO_DATE(VDATE1)) DESC
+		<!-- select vnum, title, TO_CHAR(vdate1, 'YYYY/MM/DD') AS vdate1, clicks, image from video where title like '%' ||  #{word} || '%' or channel like '%' ||  #{word} || '%' ORDER BY CLICKS/(SYSDATE - TO_DATE(VDATE1)) DESC -->
+	</select>
+	
+	<select id="select" parameterType="sportVideo2VO" resultType="sportVideo2VO">
+	<!-- ORM(Object RDB Mapping) -->
+	<!-- bbsVO에 컬럼명과 동일한 변수를 찾아서 set메서드로 값을 넣어줌. -->
+		select vnum, vvideo, title, good, badd from VIDEO where vnum = #{vnum}
+	</select>
+	
+	<select id="past1" parameterType="sportVideo2VO" resultType="sportVideo2VO">
+		select DISTINCT VIDEO.VNUM, IMAGE, TITLE, TO_CHAR(vdate1, 'YYYY/MM/DD') AS VDATE1, CLICKS from VIDEO, PERSONAL WHERE VIDEO.VNUM = PERSONAL.VNUM AND USERID=#{userid} AND VDATE2 >=TO_CHAR(SYSDATE-7,'YYYYMMDD')	ORDER BY (SYSDATE - TO_DATE(VDATE1)) DESC
+	</select> 
+	
+	<select id="past2" parameterType="sportVideo2VO" resultType="sportVideo2VO">
+		select DISTINCT VIDEO.VNUM, IMAGE, TITLE, TO_CHAR(vdate1, 'YYYY/MM/DD') AS VDATE1, CLICKS from VIDEO, PERSONAL WHERE VIDEO.VNUM = PERSONAL.VNUM AND USERID=#{userid} AND VDATE2 BETWEEN TO_CHAR(SYSDATE-30,'YYYYMMDD') AND TO_CHAR(SYSDATE-8,'YYYYMMDD')
+	</select> 							                                                      
+      	
+	<select id="future1" parameterType="sportVideo2VO" resultType="sportVideo2VO">
+		select DISTINCT VIDEO.VNUM, IMAGE, TITLE, TO_CHAR(vdate1, 'YYYY/MM/DD') AS VDATE1, CLICKS from VIDEO, PERSONAL WHERE VIDEO.VNUM = PERSONAL.VNUM AND USERID=#{userid} AND PERSONAL.FUTUREVIDEO=1
+	</select> 
+	
+	<!-- <select id="all2" parameterType="sportVideo2VO" resultType="sportVideo2VO">
+		select * from VIDEO INNER JOIN PERSONAL ON VIDEO.VNUM = PERSONAL.VNUM AND PERSONAL.USERID=#{userid} 
+	</select>  -->
+</mapper>
+
+

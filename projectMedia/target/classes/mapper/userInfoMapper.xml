@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="user_information">
+	<!-- 회원가입시 사용되는 SQL문 -->
+	<insert id="insert" parameterType="userInfoVO">
+		insert into USER_INFORMATION
+		values (#{userid}, #{upw}, #{uname}, #{uaddr}, #{utel}, #{uemail},
+		#{ubirth}, #{ugender})
+	</insert>
+	
+	<!-- MockData를 넣을떄 사용한 SQL문 -->
+	<insert id="insert2" parameterType="userInfoVO">
+		insert into USER_INFORMATION
+		values (#{userid}, #{upw}, #{uname}, #{uaddr}, #{utel}, #{uemail},
+		#{ubirth}, #{ugender})
+	</insert>
+	
+	<!-- 로그인을 할때 DB에 로그인요청을 한 id와 pw가 맞는지를 확인하는 SQL문 -->
+	<select id="loginCk" parameterType="userInfoVO" resultType="userInfoVO">
+		select * from USER_INFORMATION where userid = #{userid} and upw = #{upw}
+	</select>
+	
+	<!-- 회원 정보를 수정할 때 사용하는 SQL문 -->
+	<update id="update" parameterType="userInfoVO">
+		update USER_INFORMATION set
+		upw=#{upw}, uname=#{uname}, uaddr = #{uaddr}, utel = #{utel}, uemail = #{uemail},
+		ubirth = #{ubirth}, ugender = #{ugender} where userid = #{userid}
+	</update>
+	
+	<!-- 메인페이지의 Mockdata를 분석할때 사용 SQL문 -->
+	<select id="userAgeInformation" parameterType="userInfoVO" resultType="userInfoVO">
+		select * from USER_INFORMATION
+	</select>
+	
+	<!-- 테스트용 SQL문 -->
+	<select id="UserInformation" resultType="userInfoVO">
+		select * from USER_INFORMATION where userid = #{userid}
+	</select>
+	
+	<!-- 로그인한 회원의 회원정보를 볼때 사용하는 SQL문 -->
+	<select id="UserInformation2" resultType="userInfoVO">
+		select * from USER_INFORMATION where userid = #{userid}
+	</select>
+	
+	<!-- 수정시 수정하는 폼의 input 테그에 들어갈 값들을 가져올 때 사용하는 SQL문 -->
+	<select id="UpdateValue" resultType="userInfoVO">
+		select * from USER_INFORMATION where userid = #{userid}
+	</select>
+	
+	<!-- 삭제 시 삭제를 하기전에 확인을 할떄 사용하는 SQL문 -->
+	<select id="DeleteValue" resultType="userInfoVO">
+		select * from USER_INFORMATION where userid = #{userid}
+	</select>
+	
+	<!-- 삭제시 사용하는 SQL문 -->
+	<delete id="delete" parameterType="userInfoVO">
+		delete from USER_INFORMATION where userid = #{userid}
+	</delete>
+	
+	<!-- 아이디 중복체크를 할 때 사용하는 SQL문 -->
+	<!-- 아이디가 있는지 여부를 확인하기위해서 count를 이용해 있으면 1, 없으면 0을 가져오도록 함 -->
+	<!-- 반환되는 값이 정수형이기때문에 resultType을 int로 설정 -->
+	<select id="checkUserId" resultType="int">
+		select count(*) from USER_INFORMATION where userid = #{userid}
+	</select>
+	
+</mapper>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<typeAliases>
+		<!-- 이대준 -->
+		<typeAlias type="com.mega.mvcProjectMedia.UserInfoVO" alias="userInfoVO"></typeAlias>
+		<!-- <typeAlias type="com.mega.mvcProjectMedia.SportPlayerVO" alias="sportPlayerVO"></typeAlias> -->
+		<typeAlias type="com.mega.mvcProjectMedia.ResentVideoVO" alias="resentVideoVO"></typeAlias>
+		
+		<!-- 김민년 -->
+		<typeAlias type="com.mega.mvcProjectMedia.SportVideoVO" alias="sportvideoVO"></typeAlias>
+      	<typeAlias type="com.mega.mvcProjectMedia.CommentVO" alias="commentVO"></typeAlias>
+      	<typeAlias type="com.mega.mvcProjectMedia.PagingVO" alias="pagingVO"></typeAlias>
+      	<!-- 최용묵 -->
+      	<typeAlias type="com.mega.mvcProjectMedia.NoticeVO" alias="noticeVO"></typeAlias>
+      	<typeAlias type="com.mega.mvcProjectMedia.EnquiriesVO" alias="enquiriesVO"></typeAlias>
+      	<typeAlias type="com.mega.mvcProjectMedia.CartVO" alias="cartVO"></typeAlias>
+      	<typeAlias type="com.mega.mvcProjectMedia.PaymentVO" alias="paymentVO"></typeAlias>
+      	
+      	<!-- 한규혁 -->
+      	<typeAlias type="com.mega.mvcProjectMedia.SportVideo2VO" alias="sportVideo2VO"></typeAlias>
+        <typeAlias type="com.mega.mvcProjectMedia.WatchedVideoVO" alias="watchedVideoVO"></typeAlias>
+        
+        <!-- 임상현 -->
+		<typeAlias type="com.mega.mvcProjectMedia.ShopVO" alias="shopVO"></typeAlias>
+		<typeAlias type="com.mega.mvcProjectMedia.ScommentVO" alias="scommentVO"></typeAlias>
+      
+	</typeAliases>
+	<mappers>
+		<!-- SQL 문이 들어가는 부분 -->
+		<!-- 이대준 -->
+		<mapper resource="mapper/userInfoMapper.xml" />
+		<!-- <mapper resource="mapper/sportPlayerMapper.xml" /> -->
+		<mapper resource="mapper/resentVideoMapper.xml" />
+		
+		<!-- 김민년 -->
+		<mapper resource="mapper/sportvideoMapper.xml" />
+		<mapper resource="mapper/commentMapper.xml" />
+		
+		<!-- 최용묵 -->
+		<mapper resource="mapper/noticeMapper.xml" />
+      	<mapper resource="mapper/enquiriesMapper.xml" />
+      	<mapper resource="mapper/cartMapper.xml" />
+      	<mapper resource="mapper/paymentMapper.xml" />
+      	
+      	<!-- 한규혁 -->
+      	<mapper resource="mapper/SportVIdeo2Mapper.xml" />
+  		<mapper resource="mapper/WatchedVIdeoMapper.xml" />
+  		
+  		<!-- 임상현 -->
+		<mapper resource="mapper/shopMapper.xml" />
+		<mapper resource="mapper/scommentMapper.xml" />
+	</mappers>
+</configuration>

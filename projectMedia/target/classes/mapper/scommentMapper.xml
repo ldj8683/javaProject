@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="scomment">
+	<insert id="insert" parameterType="scommentVO">
+		insert into SCOMMENT values (#{code}, #{scpw}, #{scomment}, #{srecommen})
+	</insert>
+	
+		<select id="all" resultType="scommentVO">
+		select * from SCOMMENT
+	</select>
+	
+	<delete id="delete" parameterType="scommentVO">
+		delete from SCOMMENT where code = #{code} and scpw = #{scpw} and scomment = #{scomment}
+	</delete>
+</mapper>

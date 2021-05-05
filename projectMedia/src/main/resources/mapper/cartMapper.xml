@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cart">
+	<insert id="insert" parameterType="cartVO">
+		insert into CART values (cnumber.nextval,#{userid},#{cproduct},#{ccode},#{cquantity},#{cpayment})
+	</insert>
+	
+	<select id="select" parameterType="cartVO" resultType="cartVO">
+		<!-- ORM(Object RDB Mapping) -->
+		<!-- bbsVO에 컬럼명과 동일한 변수를 찾아서 set메서드로 값을 넣어줌. -->
+		select * from CART where cproduct = #{cproduct}
+	</select>
+
+	<select id="all" resultType="cartVO">
+		select * from CART
+	</select>
+
+	<delete id="delete" parameterType="cartVO">
+		delete from CART where cproduct = #{cproduct}
+	</delete>
+
+</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+	<insert id="insert" parameterType="noticeVO">
+		insert into NOTICE values (nnumber.nextval,#{userid},#{ntitle},sysdate,#{ndetails})
+	</insert>
+	
+	<select id="select" parameterType="noticeVO" resultType="noticeVO">
+		<!-- ORM(Object RDB Mapping) -->
+		<!-- bbsVO에 컬럼명과 동일한 변수를 찾아서 set메서드로 값을 넣어줌. -->
+		select * from NOTICE where ntitle = #{ntitle}
+	</select>
+
+	<select id="all" resultType="noticeVO">
+		select * from NOTICE
+	</select>
+	
+	<update id="update" parameterType="noticeVO">
+		update NOTICE set ndetails = #{ndetails} where ntitle = #{ntitle}
+	</update>
+
+	<delete id="delete" parameterType="noticeVO">
+		delete from NOTICE where ntitle = #{ntitle}
+	</delete>
+
+</mapper>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="shop">
+	<insert id="insert" parameterType="shopVO">
+		insert into SHOP values (#{code}, #{name}, #{pksc}, #{price}, #{lkup}, #{sksc}, #{content}, #{pstock})
+	</insert>
+	
+		<select id="all" resultType="shopVO">
+		select * from SHOP
+	</select>
+	
+		<update id="update" parameterType="shopVO">
+		update SHOP set price = #{price}, pstock = #{pstock}, content = #{content} where code = #{code}
+	</update>
+	
+	<update id="upgrade" parameterType="shopVO">
+	update SHOP set lkup = #{lkup} + 1, pstock = #{pstock} - 1 where code = #{code}
+	</update>
+</mapper>

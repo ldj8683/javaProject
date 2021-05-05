@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sportvideo">
+	<select id="select" resultType="sportvideoVO">
+		select * from SPORTVIDEO order by
+		video_views desc
+	</select>
+
+	<select id="search" resultType="sportvideoVO">
+		select * from SPORTVIDEO where
+		video_category = #{video_category} order by video_indate
+	</select>
+	<select id="selectone" resultType="sportvideoVO"
+		parameterType="sportvideoVO">
+		select * from SPORTVIDEO where video_code =
+		#{video_code}
+	</select>
+	<update id="increaseview" parameterType="sportvideoVO">
+		update SPORTVIDEO set
+		video_views = video_views + 1
+		where video_code = #{video_code}
+	</update>
+	<update id="increasegood" parameterType="sportvideoVO">
+		update SPORTVIDEO set
+		video_good = video_good + 1
+		where video_code = #{video_code}
+	</update>
+
+	<!-- 총 게시글 갯수 출력 -->
+	<select id="sportcount" resultType="int">
+		SELECT COUNT(*) FROM SPORTVIDEO where
+		video_category = #{video_category}
+		order by video_num desc
+	</select>
+
+	<!-- 페이징 처리 후 게시글 조회 -->
+	<select id="searchpaging" 
+		resultType="sportvideoVO">
+		SELECT *
+		FROM (
+		SELECT ROWNUM RN, A.*
+		FROM (
+		SELECT *
+		FROM SPORTVIDEO where video_category = #{video_category}
+		ORDER BY video_num desc
+		) A
+		)
+		WHERE RN BETWEEN #{start} AND #{end}
+	</select>
+</mapper>

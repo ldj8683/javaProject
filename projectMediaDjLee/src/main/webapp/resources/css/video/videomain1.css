@@ -1,0 +1,24 @@
+@charset "UTF-8";
+
+#video_contents {
+	width: 98%;
+	height: 900px;
+	background: red;
+}
+#video_recently {
+	width: 98%;
+	heigth: 200px
+}
+
+#video_category {
+	width: 100%;
+	background: gray;
+	height: 100px;
+	text-align: center;
+}
+
+#video_list {
+	width: 100%;
+	height: 700px;
+	background: blue;
+}

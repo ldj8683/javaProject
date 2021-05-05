@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="enquiries">
+	<insert id="insert" parameterType="enquiriesVO">
+		insert into ENQUIRIES values (enumber.nextval,#{userid},#{etitle},sysdate,#{edetails})
+	</insert>
+	
+	<select id="select" parameterType="enquiriesVO" resultType="enquiriesVO">
+		<!-- ORM(Object RDB Mapping) -->
+		<!-- bbsVO에 컬럼명과 동일한 변수를 찾아서 set메서드로 값을 넣어줌. -->
+		select * from ENQUIRIES where etitle = #{etitle}
+	</select>
+
+	<select id="all" resultType="enquiriesVO">
+		select * from ENQUIRIES
+	</select>
+	
+	<update id="update" parameterType="enquiriesVO">
+		update ENQUIRIES set edetails = #{edetails} where etitle = #{etitle}
+	</update>
+
+	<delete id="delete" parameterType="enquiriesVO">
+		delete from ENQUIRIES where etitle = #{etitle}
+	</delete>
+
+</mapper>

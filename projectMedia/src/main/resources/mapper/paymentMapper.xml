@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="payment">
+	<insert id="insert" parameterType="paymentVO">
+		insert into PAYMENT values (pnumber.nextval,#{userid},#{pname},#{ptel},sysdate,#{pproduct},#{pcode},#{pquantity},#{ppayment})
+	</insert>
+	
+	<select id="select" parameterType="paymentVO" resultType="paymentVO">
+		<!-- ORM(Object RDB Mapping) -->
+		<!-- bbsVO에 컬럼명과 동일한 변수를 찾아서 set메서드로 값을 넣어줌. -->
+		select * from PAYMENT where pproduct = #{pproduct}
+	</select>
+
+	<select id="all" resultType="paymentVO">
+		select * from PAYMENT
+	</select>
+
+	<delete id="delete" parameterType="paymentVO">
+		delete from PAYMENT where pproduct = #{pproduct}
+	</delete>
+
+</mapper>
